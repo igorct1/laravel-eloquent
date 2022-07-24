@@ -4,6 +4,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/pagination', function (User $user) {
+    $filter = request('filter');
+    $totalPage = request('paginate', 10);
+    $users = $user->where('name', 'LIKE', "%{$filter}%")->paginate($totalPage);
+    return $users;
+});
 Route::get('/where', function (User $user) {
     // User $user = $user = new User;
     // $users = $user->get(); -- todos usuarios
