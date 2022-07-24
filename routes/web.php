@@ -6,13 +6,24 @@ use App\Models\{
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
+
+Route::get('/mutators', function (User $user){
+    $user = $user->first();
+    $post = Post::create([
+        'user_id' => $user->id,
+        'title' => 'Um novo titulo'. Str::random(10),
+        'body' => Str::random(50),
+        'date' => now(),
+    ]);
+    return $post;
+});
 Route::get('/accessor', function (Post $post) {
     $post = $post->first();
 
     return $post;
 });
-
 Route::get('/delete2', function (Post $post) {
     $post->destroy(10);
 

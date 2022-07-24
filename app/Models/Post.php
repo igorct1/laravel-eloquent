@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Accessor\DefaultAccessor;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,9 +19,9 @@ class Post extends Model
         'date',
     ];
     protected $casts = [
-        'date' => 'date',
+        'date' => 'datetime:d/m/Y',
         'active' => 'boolean'
-    ]
+    ];
     // protected $table = 'postagens';
     // protected $primaryKey = 'id_postagem';
     // protected $keyType = 'string';
@@ -42,9 +43,14 @@ class Post extends Model
     // {
     //     return $this->title.'-'.$this->body;
     // }
-    
+
     // public function getDateAttribute($value)
     // {
     //     return Carbon::make($value)->format('d/m/Y');
     // }
+
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = Carbon::make($value)->format('Y/m/d');
+    }
 }
