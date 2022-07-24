@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/delete', function(){ 
+    //Post::destroy(Post::get());
+    // é possível passar um where para deletar registrados baseado na query
+    $post = Post::where('id', 9)->first();
+    if(!$post)
+        return 'post n encontrado';
+
+    dd($post->delete());
+});
 
 Route::get('/update', function (Request $request) {
     if(!$post = Post::find(1)) 
