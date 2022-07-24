@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Accessor\DefaultAccessor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory, SoftDeletes;
-    
+    use HasFactory, SoftDeletes, DefaultAccessor;
+
     protected $fillable = [
         'user_id',
         'title',
@@ -29,4 +30,13 @@ class Post extends Model
     // protected $attributes = [
     //     'active' => true
     // ];
+
+    // public function getTitleAttribute($value)
+    // {
+    //     return strtolower($value);
+    // }
+    // public function getTitleAndBodyAttribute()
+    // {
+    //     return $this->title.'-'.$this->body;
+    // }
 }

@@ -7,6 +7,12 @@ use App\Models\{
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/accessor', function (Post $post) {
+    $post = $post->first();
+
+    return $post;
+});
+
 Route::get('/delete2', function (Post $post) {
     $post->destroy(10);
 
