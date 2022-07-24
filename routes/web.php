@@ -4,8 +4,14 @@ use App\Models\{
     User,
     Post
 };
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/insert2', function (Post $post, Request $request) {
+    $post = Post::create($request->all());
+    $posts = $post->get();
+    return $posts;
+});
 Route::get('/insert', function (Post $post) {
     $post->user_id = 1;
     $post->title = 'titulo';

@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'title',
+        'body',
+        'date',
+    ];
     use HasFactory;
     // protected $table = 'postagens';
     // protected $primaryKey = 'id_postagem';
