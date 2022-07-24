@@ -7,6 +7,18 @@ use App\Models\{
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+
+Route::get('/update', function (Request $request) {
+    if(!$post = Post::find(1)) 
+        return 'Post não encontrado';
+
+    // $post->title = 'Titulo atualizado';
+    // $post->save();
+    $post->update($request->all());
+    return $post;
+});
+
 Route::get('/insert2', function (Post $post, Request $request) {
     $post = Post::create($request->all());
     $posts = $post->get();
