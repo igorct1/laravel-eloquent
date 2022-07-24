@@ -15,7 +15,6 @@ class Post extends Model
     use HasFactory, SoftDeletes, DefaultAccessor;
 
     protected $fillable = [
-        'user_id',
         'title',
         'body',
         'date',
