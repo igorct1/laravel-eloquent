@@ -4,6 +4,15 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/orderby', function (User $user) {
+    // ordenar pelo id de forma default - menor pro maior
+    // $users = $user->orderBy('id')->get();
+    //decrescente
+    // $users = $user->orderBy('id', 'desc')->get();
+
+    $users = $user->orderBy('name', 'asc')->get();
+    return $users;
+});
 Route::get('/pagination', function (User $user) {
     $filter = request('filter');
     $totalPage = request('paginate', 10);
