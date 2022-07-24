@@ -22,6 +22,16 @@ class Post extends Model
         'date' => 'datetime:d/m/Y',
         'active' => 'boolean'
     ];
+    public function scopeLastWeek($query)
+    {
+        return $this->whereDate('date', '>=', now()->subDays(4))
+                    ->whereDate('date', '<=', now()->subDays(1));
+    }
+    public function scopeToday($query)
+    {
+        return $this->whereDate('date', now());
+    }
+
     // protected $table = 'postagens';
     // protected $primaryKey = 'id_postagem';
     // protected $keyType = 'string';

@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-
+Route::get('local-scope', function(Post $post){
+    // $posts = $post::lastWeek()->get();
+    $posts = $post::today()->get();
+    return $posts;
+});         
 Route::get('/mutators', function (User $user){
     $user = $user->first();
     $post = Post::create([
@@ -31,8 +35,6 @@ Route::get('/delete2', function (Post $post) {
 
     return $users;
 });
-
-
 Route::get('/delete', function(){ 
     //Post::destroy(Post::get());
     // é possível passar um where para deletar registrados baseado na query
@@ -42,7 +44,6 @@ Route::get('/delete', function(){
 
     dd($post->delete());
 });
-
 Route::get('/update', function (Request $request) {
     if(!$post = Post::find(1)) 
         return 'Post não encontrado';
@@ -52,7 +53,6 @@ Route::get('/update', function (Request $request) {
     $post->update($request->all());
     return $post;
 });
-
 Route::get('/insert2', function (Post $post, Request $request) {
     $post = Post::create($request->all());
     $posts = $post->get();
@@ -68,8 +68,6 @@ Route::get('/insert', function (Post $post) {
 
     return $posts;
 });
-
-
 Route::get('/orderby', function (User $user) {
     // ordenar pelo id de forma default - menor pro maior
     // $users = $user->orderBy('id')->get();
@@ -102,7 +100,6 @@ Route::get('/where', function (User $user) {
                     ->toSql();
     return $users;
 });
-
 Route::get('/select', function(){ 
     // $users = User::all(); -- retornar todos os usuarios
     // $users = User::where('id', 1)->get(); -- retornar usuario cujo id é = 1
@@ -114,7 +111,6 @@ Route::get('/select', function(){
     // $user = User::firstWhere('name', request('name'));
     // return $user;
 });
-
 Route::get('/', function () {
     return view('welcome');
 });
