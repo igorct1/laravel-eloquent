@@ -1,7 +1,21 @@
 <?php
 
-use App\Models\User;
+use App\Models\{
+    User,
+    Post
+};
 use Illuminate\Support\Facades\Route;
+
+Route::get('/insert', function (Post $post) {
+    $post->user_id = 1;
+    $post->title = 'titulo';
+    $post->body = 'body';
+    $post->date = now();
+    $post->save();
+    $posts = $post->get();
+
+    return $posts;
+});
 
 
 Route::get('/orderby', function (User $user) {
