@@ -17,7 +17,10 @@ class Post extends Model
         'body',
         'date',
     ];
-
+    protected $casts = [
+        'date' => 'date',
+        'active' => 'boolean'
+    ]
     // protected $table = 'postagens';
     // protected $primaryKey = 'id_postagem';
     // protected $keyType = 'string';
@@ -38,5 +41,10 @@ class Post extends Model
     // public function getTitleAndBodyAttribute()
     // {
     //     return $this->title.'-'.$this->body;
+    // }
+    
+    // public function getDateAttribute($value)
+    // {
+    //     return Carbon::make($value)->format('d/m/Y');
     // }
 }
