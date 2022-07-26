@@ -24,9 +24,9 @@ class Post extends Model
         'date' => 'datetime:d/m/Y',
         'active' => 'boolean'
     ];
-    protected $dispatchesEvents = [
-        'created' => PostCreated::class,
-    ];
+    // protected $dispatchesEvents = [
+    //     'created' => PostCreated::class,
+    // ];
     protected static function booted()
     {
         // static::addGlobalScope('year', function (Builder $builder){ 
